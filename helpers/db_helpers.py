@@ -30,12 +30,12 @@ def run_query(statement, args=None):
             cursor.execute(statement, args)
             result = cursor.fetchall()
             return result
-        elif statement.startswith("INSERT"):
-            cursor.execute(statement,args)
-            conn.commit()
-            print("Welcome, you are now registered!")   
-            # Get the first person from the results list, then retrieve the 2nd index(column) from that row
-            # print(result[0][1])
+        # elif statement.startswith("INSERT"):
+        #     cursor.execute(statement,args)
+        #     conn.commit()
+        #     print("Welcome, you are now registered!")   
+        #     # Get the first person from the results list, then retrieve the 2nd index(column) from that row
+        #     # print(result[0][1])
         else:
             cursor.execute(statement, args)
             if cursor.rowcount == 1:
@@ -73,3 +73,5 @@ def run_query(statement, args=None):
             print(e.msg)
     finally:
         disconnect_db(conn, cursor)
+        print("disconnected")
+
