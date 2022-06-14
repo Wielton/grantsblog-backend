@@ -23,8 +23,8 @@ def posts_get():
 @app.post('/api/posts')
 def create_post():
     data = request.json
-    user_name = data.get('username')
-    post_content = data.get('post')
+    user_name = data.get('userName')
+    post_content = data.get('userPost')
     if not user_name:
         return jsonify("Missing required argument 'Username'"), 422
     if not post_content:
@@ -40,14 +40,14 @@ def edit_post():
     data = request.json
     post_content = data.get('post')
     run_query("UPDATE user_posts SET post = ? WHERE id=?", [post_content, post_id])
-    return jsonify("Your post was successfully edited"), 205
+    return jsonify("Your post was successfully edited"), 200
 
 @app.delete('/api/posts')
 def delete_post():
     params = request.args
     user_id = params.get('id')
     run_query("DELETE FROM user_posts WHERE id=?",[user_id])
-    return jsonify("Post deleted"),201
+    return jsonify("Post deleted"),200
 
 
 # This is the features section with an api to users, 
